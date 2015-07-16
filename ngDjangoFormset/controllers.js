@@ -25,18 +25,20 @@ angular.module('ngDjangoFormset')
         self.__template__ = self.__template__.replace(/^(\s|\n|\t){1,}/gi, '');
       }
       // Grab management form elements
-      var fidRegexp = new RegExp(self.__formsetprefix__+"\\-([0-9]{1,})", "i"),
-	  managementFormRegexp = new RegExp(self.__formsetprefix__+"\\-([A-Z_]+)");
+      var fidRegexp = new RegExp(self.__formsetprefix__ +
+          "\\-([0-9]{1,})", "i"),
+	  managementFormRegexp = new RegExp(self.__formsetprefix__ +
+          "\\-([A-Z_]+)");
       // Find the higher __fid__
       angular.forEach(self.__children__, function(value, index) {
-	var fid, inputName = value.find('input').prop('name');
-	inputName = inputName.match(fidRegexp);
-	if(inputName) {
-	  fid = parseInt(inputName[1]);
-	  if(fid > self.__fid__) {
-	    self.__fid__ = fid;
-	  }
-	}
+        var fid, inputName = value.find('input').prop('name');
+        inputName = inputName.match(fidRegexp);
+        if(inputName) {
+          fid = parseInt(inputName[1]);
+          if(fid > self.__fid__) {
+            self.__fid__ = fid;
+          }
+        }
       });
       // Find formset management fields
       angular.forEach(element.find('input'), function(value, index) {
