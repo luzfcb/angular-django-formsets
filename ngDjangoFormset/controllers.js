@@ -127,12 +127,12 @@ angular.module('ngDjangoFormset')
         return child;
       }
     }
-    
+
     self.registerChild = function(element) {
       self.__children__.push(element);
       self.update();
     }
-    
+
     self.destroyChild = function(element) {
       var childIndex = self.__children__.indexOf(element);
       self.__children__.splice(childIndex, 1);
