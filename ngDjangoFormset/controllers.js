@@ -42,21 +42,21 @@ angular.module('ngDjangoFormset')
       });
       // Find formset management fields
       angular.forEach(element.find('input'), function(value, index) {
-	var input = angular.element(value),
-	    match = input.prop('name').match(managementFormRegexp);
-	if(match) {
-	  switch(match[1]) {
-	  case 'TOTAL_FORMS':
-	    self.__totalforms__ = input;
-	    break;
-	  case 'INITIAL_FORMS':
-	    self.__minforms__ = parseInt(input.val()) || self.__minforms__;
-	    break;
-	  case 'MAX_NUM_FORMS':
-	    self.__maxforms__ = parseInt(input.val()) || self.__maxforms__;
-	    break;
-	  }
-	}
+        var input = angular.element(value),
+          match = input.prop('name').match(managementFormRegexp);
+        if(match) {
+          switch(match[1]) {
+            case 'TOTAL_FORMS':
+              self.__totalforms__ = input;
+              break;
+            case 'INITIAL_FORMS':
+              self.__minforms__ = parseInt(input.val()) || self.__minforms__;
+              break;
+            case 'MAX_NUM_FORMS':
+              self.__maxforms__ = parseInt(input.val()) || self.__maxforms__;
+              break;
+          }
+        }
       });
       // If template wasn't found throw an error
       if(!self.__template__) {
