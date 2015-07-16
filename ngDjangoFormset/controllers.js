@@ -60,46 +60,46 @@ angular.module('ngDjangoFormset')
       });
       // If template wasn't found throw an error
       if(!self.__template__) {
-	throw new SyntaxError("Template not found");
+        throw new SyntaxError("Template not found");
       }
       // If __totalforms__ input wasn't found throw an error
       if(!self.__totalforms__) {
-	throw new SyntaxError("Could't find formset TOTAL_FORMS input, " +
-			      "check if you printed {{formset.management_form}}");
+        throw new SyntaxError("Could't find formset TOTAL_FORMS input, " +
+          "check if you printed {{formset.management_form}}");
       }
       // If __container__ wans't set throw an error
       if(!self.__container__) {
-	throw new SyntaxError("Formset container cound't be found, " +
-			      "please add formset-container to a child element");
+        throw new SyntaxError("Formset container cound't be found, " +
+          "please add formset-container to a child element");
       }
       self.update();
     }
-    
+
     self.setupContainer = function(element) {
       self.__container__ = element;
     }
-    
+
     self.update = function() {
       if(self.__totalforms__)
 	self.__totalforms__.val(self.__children__.length);
     }
-    
+
     self.addFormset = function(fn) {
       if(self.__children__.length < self.__maxforms__) {
-	self.__fid__ += 1;
-	// Setup a new element from template
-	var element = angular.element(
-	  self.__template__.replace(/__prefix__/gi, self.__fid__)
-	);
-	// Add the template to container and children's list
-	self.__container__.append(element);
-	// Compile after append to inherits controller
-	$compile(element)(self.__formset__.scope() || {});
-	if(fn) {
-	  // var args = Array.prototype.splice.call(arguments, 1);
-	  fn.apply(null, [self]);
-	}
-	return element;
+        self.__fid__ += 1;
+        // Setup a new element from template
+        var element = angular.element(
+          self.__template__.replace(/__prefix__/gi, self.__fid__)
+        );
+        // Add the template to container and children's list
+        self.__container__.append(element);
+        // Compile after append to inherits controller
+        $compile(element)(self.__formset__.scope() || {});
+        if(fn) {
+          // var args = Array.prototype.splice.call(arguments, 1);
+          fn.apply(null, [self]);
+        }
+        return element;
       }
     }
     
