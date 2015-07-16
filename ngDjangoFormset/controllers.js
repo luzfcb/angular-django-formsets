@@ -27,7 +27,7 @@ angular.module('ngDjangoFormset')
       // Grab management form elements
       var fidRegexp = new RegExp(self.__formsetprefix__ +
           "\\-([0-9]{1,})", "i"),
-	  managementFormRegexp = new RegExp(self.__formsetprefix__ +
+        managementFormRegexp = new RegExp(self.__formsetprefix__ +
           "\\-([A-Z_]+)");
       // Find the higher __fid__
       angular.forEach(self.__children__, function(value, index) {
