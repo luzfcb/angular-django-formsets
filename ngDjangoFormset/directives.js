@@ -6,7 +6,7 @@ angular.module('ngDjangoFormset')
     scope: {},
     controller: 'ngDjangoFormsetCtrl',
     link: function postLink(scope, element, attrs, controller) {
-	controller.setup(element);
+      controller.setup(element);
     }
   };
 })
@@ -15,7 +15,7 @@ angular.module('ngDjangoFormset')
     require: '^formset',
     restrict: 'A',
     link: function postLink(scope, element, attrs, controller) {
-	controller.setupContainer(element);
+      controller.setupContainer(element);
     }
   };
 })
@@ -25,10 +25,10 @@ angular.module('ngDjangoFormset')
     restrict: 'A',
     scope: true,
     link: function postLink(scope, element, attrs, controller) {
-	controller.registerChild(element);
-	element.on('$destroy', function() {
-            controller.destroyChild(element);
-	});
+      controller.registerChild(element);
+      element.on('$destroy', function() {
+        controller.destroyChild(element);
+      });
     }
   };
 })
@@ -37,18 +37,18 @@ angular.module('ngDjangoFormset')
     require: '^formset',
     restrict: 'A',
     link: function postLink(scope, element, attrs, controller) {
-	element.on('click', function(event) {
-            event.preventDefault();
-	    var fn = window[attrs.callback];
-	    if(typeof fn === 'function') {
-		controller.addFormset(fn);
-	    } else {
-		controller.addFormset(null);
-	    }
-	});
-	element.on('$destroy', function() {
-            element.off('click');
-	});
+      element.on('click', function(event) {
+        event.preventDefault();
+	var fn = window[attrs.callback];
+	if(typeof fn === 'function') {
+	  controller.addFormset(fn);
+	} else {
+	  controller.addFormset(null);
+	}
+      });
+      element.on('$destroy', function() {
+        element.off('click');
+      });
     }
   };
 })
