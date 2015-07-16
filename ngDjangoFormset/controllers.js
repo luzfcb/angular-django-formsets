@@ -22,7 +22,7 @@ angular.module('ngDjangoFormset')
       // Removes leading whitespaces from template, hence jqLite can't
       // parse the element with them.
       if(self.__template__) {
-	self.__template__ = self.__template__.replace(/^(\s|\n|\t){1,}/gi, '');
+        self.__template__ = self.__template__.replace(/^(\s|\n|\t){1,}/gi, '');
       }
       // Grab management form elements
       var fidRegexp = new RegExp(self.__formsetprefix__+"\\-([0-9]{1,})", "i"),
