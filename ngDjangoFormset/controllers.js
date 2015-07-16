@@ -102,29 +102,29 @@ angular.module('ngDjangoFormset')
         return element;
       }
     }
-    
+
     self.removeFormset = function(element) {
       if(self.__children__.length > self.__minforms__) {
-	var child = element,
-	    isChild = function(child) {
-	      return child.attr('formset-child') !== undefined ||
-		child.attr('data-formset-child') !== undefined ||
-		child.attr('x-formset-child') !== undefined;
-	    };
-	// Find the child container
-	while(!isChild(child) && child.prop('tagName') !== 'BODY') {
-	  child = child.parent();
-	}
-	if(child.prop('tagName') !== 'BODY') {
-	  try {
-	    child.scope().$destroy();
-	  } catch(error) {
-	    // ...
-	  } finally {
-	    child.remove();
-	  }
-	}
-	return child;
+        var child = element,
+          isChild = function(child) {
+            return child.attr('formset-child') !== undefined ||
+              child.attr('data-formset-child') !== undefined ||
+              child.attr('x-formset-child') !== undefined;
+          };
+        // Find the child container
+        while(!isChild(child) && child.prop('tagName') !== 'BODY') {
+          child = child.parent();
+        }
+        if(child.prop('tagName') !== 'BODY') {
+          try {
+            child.scope().$destroy();
+          } catch(error) {
+            // ...
+          } finally {
+            child.remove();
+          }
+        }
+        return child;
       }
     }
     
