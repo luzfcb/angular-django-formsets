@@ -3,20 +3,20 @@ angular.module('ngDjangoFormset')
   '$attrs', '$templateCache', '$compile',
   function($attrs, $templateCache, $compile) {
     var self = this;
-      
+
     self.__fid__ = 0;
     self.__children__ = [];
     self.__template__ = $templateCache.get($attrs.formset) || '';
     self.__formsetprefix__ = $attrs.formsetPrefix || 'form';
     self.__candelete__ = $attrs.formsetCanDelete || false;
     self.__canorder__ = $attrs.formsetCanOrder || false;
-    
+
     self.__formset__ = null;
     self.__container__ = null;
     self.__totalforms__ = null;
     self.__minforms__ = 0;
     self.__maxforms__ = 1000;
-    
+
     self.setup = function(element) {
       self.__formset__ = element;
       // Removes leading whitespaces from template, hence jqLite can't
@@ -25,10 +25,8 @@ angular.module('ngDjangoFormset')
 	self.__template__ = self.__template__.replace(/^(\s|\n|\t){1,}/gi, '');
       }
       // Grab management form elements
-      var fidRegexp = new RegExp(self.__formsetprefix__ +
-				 "\\-([0-9]{1,})", "i"),
-	  managementFormRegexp = new RegExp(self.__formsetprefix__ +
-					    "\\-([A-Z_]+)");
+      var fidRegexp = new RegExp(self.__formsetprefix__+"\\-([0-9]{1,})", "i"),
+	  managementFormRegexp = new RegExp(self.__formsetprefix__+"\\-([A-Z_]+)");
       // Find the higher __fid__
       angular.forEach(self.__children__, function(value, index) {
 	var fid, inputName = value.find('input').prop('name');
